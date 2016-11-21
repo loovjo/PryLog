@@ -20,7 +20,15 @@ def assertEq(method, args, expected):
     if res == expected:
         print("\033[38;5;40mCorrect")
     else:
-        print("\033[38;5;1mCorrect")
-        log("Wrong. Expected " + repr(expected))
+        print()
+        log("Wrong. Expected \t" + repr(expected))
+        log("Got \t\t" + repr(res))
 
-assertEq("Parser.tokenize", ["hej"], [])
+# Test tokenizer
+assertEq("Parser.tokenize", ["hello(World) :- test."], ["hello", "(", "World", ")", ":-", "test", "."])
+assertEq("Parser.tokenize", ["lstAppend([X | Xs], Y, [R | Res]) :- R = X, append(Xs, Y, Res)."], ["lstAppend", "(", "[", "X", "|", "Xs", "]", ",", "Y", ",", "[", "R", "|", "Res", "]", ")", ":-", "R", "=", "X", ",", "append", "(", "Xs", ",", "Y", ",", "Res", ")", "."])
+
+# Test parser
+# assertEq("Parser.parse", ["Hello"], Parser.ElementVariable("Hello"))
+# assertEq("Parser.parse", ["hello"], Parser.ElementAtom("hello"))
+# assertEq("Parser.parse", ["'hello'"], Parser.ElementVariable("hello"))
