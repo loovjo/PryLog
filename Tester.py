@@ -29,6 +29,6 @@ assertEq("Parser.tokenize", ["hello(World) :- test."], ["hello", "(", "World", "
 assertEq("Parser.tokenize", ["lstAppend([X | Xs], Y, [R | Res]) :- R = X, append(Xs, Y, Res)."], ["lstAppend", "(", "[", "X", "|", "Xs", "]", ",", "Y", ",", "[", "R", "|", "Res", "]", ")", ":-", "R", "=", "X", ",", "append", "(", "Xs", ",", "Y", ",", "Res", ")", "."])
 
 # Test parser
-# assertEq("Parser.parse", ["Hello"], Parser.ElementVariable("Hello"))
-# assertEq("Parser.parse", ["hello"], Parser.ElementAtom("hello"))
-# assertEq("Parser.parse", ["'hello'"], Parser.ElementVariable("hello"))
+assertEq("Parser.parse", ["Hello"], Parser.ElementVariable("Hello"))
+assertEq("Parser.parse", ["hello"], Parser.ElementAtom("hello"))
+assertEq("Parser.parse", [Parser.tokenize("hello(World)")], Parser.ElementContainer([Parser.ElementAtom("hello"), Parser.ElementContainer([Parser.ElementAtom("("), Parser.ElementVariable("World"), Parser.ElementAtom(")")])]))
